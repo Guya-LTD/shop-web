@@ -2,9 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 
+import ServiceRoute from 'routes/ServiceRoute'; 
+
 ReactDOM.render(
   <React.StrictMode>
-    <div>Hello</div>
+    <ServiceRoute />
   </React.StrictMode>,
   document.getElementById('root')
 );
