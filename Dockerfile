@@ -1,5 +1,7 @@
-# build environment
-FROM node:13.12.0-alpine as build
+########################################################
+# Base                                                 #
+########################################################
+FROM node:13.12.0-alpine as base
 
 ENV WORK_DIR /usr/src/app
 WORKDIR ${WORK_DIR}
@@ -8,18 +10,30 @@ ENV PATH ${WORK_DIR}/node_modules/.bin:$PATH
 
 COPY package.json ./
 
-COPY yarn.lock ./
-
-RUN yarn install
+RUN npm install
 
 COPY . ./
 
-RUN yarn run build
+########################################################
+# Development build                                    #
+########################################################
+FROM base AS development
 
-#
-# production environment
-#
-FROM guyaltd/nginx
+CMD CI=true npm start
+
+EXPOSE 3000
+
+########################################################
+# Production build                                     #
+########################################################
+FROM base AS build
+
+RUN npm run build
+
+########################################################
+# Production environment                               #
+########################################################
+FROM guyaltd/nginx:v1.0.0 AS production
 
 ENV WORK_DIR /usr/src/app
 
