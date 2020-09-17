@@ -8,18 +8,16 @@ WORKDIR ${WORK_DIR}
 
 ENV PATH ${WORK_DIR}/node_modules/.bin:$PATH
 
-COPY package.json ./
-
-RUN npm install
-
 COPY . ./
+
+RUN yarn install
 
 ########################################################
 # Development build                                    #
 ########################################################
 FROM base AS development
 
-CMD CI=true npm start
+CMD CI=true yarn start
 
 EXPOSE 3000
 
@@ -28,7 +26,7 @@ EXPOSE 3000
 ########################################################
 FROM base AS build
 
-RUN npm run build
+RUN yarn run build
 
 ########################################################
 # Production environment                               #
