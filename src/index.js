@@ -6,7 +6,7 @@ import ServiceRoute from 'routes/ServiceRoute';
 
 ReactDOM.render(
   <React.StrictMode>
-    <p>Shop web</p>
+	<ServiceRoute />
   </React.StrictMode>,
   document.getElementById('root')
 );
