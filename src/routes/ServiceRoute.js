@@ -6,19 +6,17 @@ import {
     Route
 } from 'react-router-dom';
 
-import IndexPage from 'pages/Index';
-import LoginPage from 'pages/Login';
-import SignupPage from 'pages/Signup';
-import Error404Page from 'pages/Error404';
+import Error404Page from 'pages/Error404Page';
+import Error500Page from 'pages/Error500Page';
+import IndexPage from 'pages/IndexPage';
 
 const history = createBrowserHistory();
 
 const ServiceRoute = () => (
-    <Router history={history}>
+    <Router history={history} basename={process.env.PUBLIC_URL}>
         <Switch>
             <Route exact path='/' component={IndexPage} />
-            <Route path='/login' component={LoginPage} />
-            <Route path='/signup' component={SignupPage} />
+            <Route path="/:locale(en|am)?/error" component={Error500Page} />
             <Route path="*" component={Error404Page} />
         </Switch>
     </Router>

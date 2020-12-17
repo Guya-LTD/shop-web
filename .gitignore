@@ -1,5 +1,9 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# dev files
+public/dev-lib
+gcss-v0.1.0-dev/
+
 # dependencies
 /node_modules
 /.pnp
