@@ -8,10 +8,32 @@ const locales = ['en', 'am'];
 
 const translations = {
     en: {
-        http: httpEn
+        http: httpEn,
+        'sign_up': 'Sign up',
+        'login': 'Login',
+        'women': 'Women',
+        'men': 'Men',
+        'electronics': 'Electronics',
+        'toys': 'Toys',
+        'beauty': 'Beauty',
+        'kids': 'Kids',
+        'vintage': 'Vintage',
+        'sports': 'Sports',
+        'handmade': 'Handmade'
     },
     am: {
-        http: httpAm
+        http: httpAm,
+        'sign_up': 'መመዝገቢያ',
+        'login': 'ግባ',
+        'women': 'የሴቶች',
+        'men': 'የወንዶች',
+        'electronics': 'ኤሌክትሮኒክስ',
+        'toys': 'መጫወቻዎች',
+        'beauty': 'ውበት',
+        'kids': 'የልጆች',
+        'vintage': 'የመኸር',
+        'sports': 'ስፖርት',
+        'handmade': 'በእጅ የተሰራ'
     }
 }
     
