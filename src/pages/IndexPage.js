@@ -8,12 +8,15 @@ import Button from '@bit/guya-ltd.gcss.atoms.button';
 import Nav from '@bit/guya-ltd.gcss.molecules.nav';
 import Notification from '@bit/guya-ltd.gcss.molecules.notification';
 import Hero from '@bit/guya-ltd.gcss.molecules.hero';
+import Dropdown from '@bit/guya-ltd.gcss.molecules.dropdown';
 import {
     Search as SearchIcon,
     MenuOutline,
-    CloseOutline
+    CloseOutline,
+    Language
 } from 'react-ionicons-icon';
 import { Redirect, NavLink as RouterNavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-i18n';
 import I18n from 'I18n';
 
 const Index = (props) => {
@@ -50,11 +53,27 @@ const Index = (props) => {
                     <Link theme="cornflower-blue" cls="link--nav-cornflower"><I18n t="sign_up" /></Link>
                     <Link theme="cornflower-blue" cls="link--nav-cornflower"><I18n t="login" /></Link>
                     <div className="divider-vr" />
-                    <a href="#" className="link nav-cornflower" style={{ marginLeft: "2px", verticalAlign: "-webkit-baseline-middle"}}>
+                    <a className='link link--xs link--light-gh theme-red' style={{marginLeft: "0px",  verticalAlign: "sub"}}>
+                        <Dropdown
+                            type="is-hoverable"
+                            trigger={
+                                <Language size="27px" fill="#858585" />
+                            }
+                            >
+                            <NavLink ignoreLocale to="/en" className="link link-md theme-read linkdropdown-item">
+                                English
+                            </NavLink>
+                            <NavLink ignoreLocale to="/am" className="link link-md theme-read linkdropdown-item">
+                                እማርኛ
+                            </NavLink>
+                        </Dropdown>
+                    </a>
+                    <a href="#" className="link nav-cornflower" style={{ marginLeft: "2px", verticalAlign: "bottom"}}>
                         <span>
                             <svg height="27px" xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><circle cx='176' cy='416' r='16' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='32'/><circle cx='400' cy='416' r='16' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='32'/><path fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='32' d='M48 80h64l48 272h256'/><path d='M160 288h249.44a8 8 0 007.85-6.43l28.8-144a8 8 0 00-7.85-9.57H128' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='32'/></svg>
                         </span>
                     </a>
+                    
                     <Button theme='cornflower-blue' variant="primary">Sell</Button>
                 </span> 
     }

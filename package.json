@@ -4,9 +4,11 @@
   "private": true,
   "homepage": "/shop",
   "dependencies": {
+    "@appbaseio/reactivesearch": "^3.13.1",
     "@bit/guya-ltd.gcss.atoms.button": "^0.0.7",
     "@bit/guya-ltd.gcss.atoms.link": "^0.0.6",
     "@bit/guya-ltd.gcss.atoms.search": "^0.0.2",
+    "@bit/guya-ltd.gcss.molecules.dropdown": "^0.0.1",
     "@bit/guya-ltd.gcss.molecules.hero": "^0.0.2",
     "@bit/guya-ltd.gcss.molecules.logo": "^0.0.1",
     "@bit/guya-ltd.gcss.molecules.nav": "^0.0.3",
