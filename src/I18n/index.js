@@ -19,7 +19,13 @@ const translations = {
         'kids': 'Kids',
         'vintage': 'Vintage',
         'sports': 'Sports',
-        'handmade': 'Handmade'
+        'handmade': 'Handmade',
+        'home': 'Home',
+        'search': 'Search',
+        'less_than_one_stars': '> 1 stars',
+        'two_stars_and_up': '2 stars and up',
+        'three_stars_and_up': '3 stars and up',
+        'four_stars_and_up': '4 stars and up'
     },
     am: {
         http: httpAm,
@@ -33,7 +39,13 @@ const translations = {
         'kids': 'የልጆች',
         'vintage': 'የመኸር',
         'sports': 'ስፖርት',
-        'handmade': 'በእጅ የተሰራ'
+        'handmade': 'በእጅ የተሰራ',
+        'home': 'መግቢያ',
+        'search': 'ፈልግ',
+        'less_than_one_stars': '> 1 ኮከቦች',
+        'two_stars_and_up': '2 ኮከቦች እና ከዚያ በላይ',
+        'three_stars_and_up': '3 ኮከቦች እና ከዚያ በላይ',
+        'four_stars_and_up': '4 ኮከቦች እና ከዚያ በላይ'
     }
 }
     

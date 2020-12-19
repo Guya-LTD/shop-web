@@ -1188,6 +1188,26 @@
     prop-types "15.7.2"
     react "^16.13.1"
 
+"@bit/guya-ltd.gcss.atoms.typography@^0.0.4":
+  version "0.0.4"
+  resolved "https://node.bit.dev/guya-ltd.gcss.atoms.typography/-/guya-ltd.gcss.atoms.typography-0.0.4.tgz#3b7074e4c5a7ee6802c8569b05219adf5934ef9c"
+  integrity sha1-O3B05MWn7mgCyFabBSGa31k075w=
+  dependencies:
+    "@bem-react/classname" "^1.5.8"
+    "@bem-react/classnames" "^1.3.9"
+    prop-types "15.7.2"
+    react "^16.13.1"
+
+"@bit/guya-ltd.gcss.molecules.breadcrumb@^0.0.1":
+  version "0.0.1"
+  resolved "https://node.bit.dev/guya-ltd.gcss.molecules.breadcrumb/-/guya-ltd.gcss.molecules.breadcrumb-0.0.1.tgz#6ef87292c37e8116dd3f321eff06aec09dd27375"
+  integrity sha1-bvhyksN+gRbdPzIe/wauwJ3Sc3U=
+  dependencies:
+    "@bem-react/classname" "^1.5.8"
+    "@bem-react/classnames" "^1.3.9"
+    prop-types "15.7.2"
+    react "^16.13.1"
+
 "@bit/guya-ltd.gcss.molecules.dropdown@^0.0.1":
   version "0.0.1"
   resolved "https://node.bit.dev/guya-ltd.gcss.molecules.dropdown/-/guya-ltd.gcss.molecules.dropdown-0.0.1.tgz#bd1eb4d400c844fe77ec05e373d22255a919e6a4"
@@ -1258,6 +1278,13 @@
   dependencies:
     "@bem-react/classname" "^1.5.8"
     prop-types "15.7.2"
+    react "^16.13.1"
+
+"@bit/guya-ltd.gcss.templates.shopview@^0.0.1":
+  version "0.0.1"
+  resolved "https://node.bit.dev/guya-ltd.gcss.templates.shopview/-/guya-ltd.gcss.templates.shopview-0.0.1.tgz#a765ab177c96beaea4ffaadcf010b7cfced6ff80"
+  integrity sha1-p2WrF3yWvq6k/6rc8BC3z87W/4A=
+  dependencies:
     react "^16.13.1"
 
 "@cnakazawa/watch@^1.0.3":
