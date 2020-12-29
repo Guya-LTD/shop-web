@@ -25,7 +25,12 @@ const translations = {
         'less_than_one_stars': '> 1 stars',
         'two_stars_and_up': '2 stars and up',
         'three_stars_and_up': '3 stars and up',
-        'four_stars_and_up': '4 stars and up'
+        'four_stars_and_up': '4 stars and up',
+        'five_stars_and_up': 'All 5 stars',
+        'login_to': 'Login To:',
+        'email_or_phone_number': 'Email or phone number',
+        'full_name': 'Full Name',
+        'password': 'Password'
     },
     am: {
         http: httpAm,
@@ -45,7 +50,11 @@ const translations = {
         'less_than_one_stars': '> 1 ኮከቦች',
         'two_stars_and_up': '2 ኮከቦች እና ከዚያ በላይ',
         'three_stars_and_up': '3 ኮከቦች እና ከዚያ በላይ',
-        'four_stars_and_up': '4 ኮከቦች እና ከዚያ በላይ'
+        'four_stars_and_up': '4 ኮከቦች እና ከዚያ በላይ',
+        'login_to': 'Login To:',
+        'email_or_phone_number': 'Email or phone number',
+        'full_name': 'Full Name',
+        'password': 'Password'
     }
 }
     

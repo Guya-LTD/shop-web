@@ -43,7 +43,7 @@ const HomeLayout = (props) => {
     const headerCollapse = {
         search: null,
         left: <CategorySearch
-            componentId="searchbox"
+            componentId="SearchFilter"
             dataField="customer_full_name"
             categoryField="email"
             placeholder="Search for cars"

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Shophome from '@bit/guya-ltd.gcss.templates.shophome';
 import Navbar from '@bit/guya-ltd.gcss.molecules.navbar';
 import Logo from '@bit/guya-ltd.gcss.molecules.logo';
@@ -18,10 +18,39 @@ import {
 import { Redirect, NavLink as RouterNavLink } from 'react-router-dom';
 import { NavLink } from 'react-router-i18n';
 import I18n from 'I18n';
+import Chat from 'pages/Chat';
+import LoginModal from 'pages/LoginModal';
+import RegisterModal from 'pages/RegisterModal';
+import Rodal from 'rodal';
+import 'rodal/lib/rodal.css';
 
 const Index = (props) => {
     /* Localization */
     const locale = props.match.params.locale == null ? 'en' : props.match.params.locale;
+
+    const [visibleLoginModal, setVisibleLoginModal] = useState(false);
+
+    const [visibleRegisterModal, setVisibleRegisterModal] = useState(false);
+
+    const hideLoginModal = event => {
+        event.preventDefault();
+        setVisibleLoginModal(false);
+    }
+
+    const showLoginModal = event => {
+        event.preventDefault();
+        setVisibleLoginModal(true);
+    }
+
+    const showRegisterModal = event => {
+        event.preventDefault();
+        setVisibleRegisterModal(true);
+    }
+
+    const hideRegisterModal = event => {
+        event.preventDefault();
+        setVisibleRegisterModal(false);
+    }
 
     /* Index Header open icon */
     const headerOpen =  <MenuOutline size="45px"/>
@@ -50,8 +79,8 @@ const Index = (props) => {
                 icon={<SearchIcon size="20px" />}
               />,
         right: <span>
-                    <Link theme="cornflower-blue" cls="link--nav-cornflower"><I18n t="sign_up" /></Link>
-                    <Link theme="cornflower-blue" cls="link--nav-cornflower"><I18n t="login" /></Link>
+                    <Link theme="cornflower-blue" cls="link--nav-cornflower" onClick={showRegisterModal}><I18n t="sign_up" /></Link>
+                    <Link theme="cornflower-blue" cls="link--nav-cornflower" onClick={showLoginModal}><I18n t="login" /></Link>
                     <div className="divider-vr" />
                     <a className='link link--xs link--light-gh theme-red' style={{marginLeft: "0px",  verticalAlign: "sub"}}>
                         <Dropdown
@@ -157,7 +186,7 @@ const Index = (props) => {
                         </div>
                     }
                     right={
-                        <div class="row image is-5by2">
+                        <div class="row ">
                             <img src={process.env.PUBLIC_URL + "/images/lux-sell-desktop.png"} />
                         </div>
                     }
@@ -229,14 +258,25 @@ const Index = (props) => {
                     </div>
 
     return (
-        <Shophome
-            header={header}
-            notification={notification}
-            hero={hero}
-            services={services}
-        >
+        <>
+            <div>
+                <Rodal visible={visibleLoginModal} onClose={hideLoginModal} height="270">
+                    <LoginModal />
+                </Rodal>
 
-        </Shophome>
+                <Rodal visible={visibleRegisterModal} onClose={hideRegisterModal} height="400">
+                    <RegisterModal />
+                </Rodal>
+            </div>
+            <Chat />
+            <Shophome
+                header={header}
+                notification={notification}
+                hero={hero}
+                services={services}
+            >
+            </Shophome>
+        </>
     )
 }
 

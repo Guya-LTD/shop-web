@@ -11,11 +11,13 @@
     "@bit/guya-ltd.gcss.atoms.typography": "^0.0.4",
     "@bit/guya-ltd.gcss.molecules.breadcrumb": "^0.0.1",
     "@bit/guya-ltd.gcss.molecules.dropdown": "^0.0.1",
+    "@bit/guya-ltd.gcss.molecules.field": "^0.0.9",
     "@bit/guya-ltd.gcss.molecules.hero": "^0.0.2",
     "@bit/guya-ltd.gcss.molecules.logo": "^0.0.1",
     "@bit/guya-ltd.gcss.molecules.nav": "^0.0.3",
     "@bit/guya-ltd.gcss.molecules.navbar": "^0.0.9",
     "@bit/guya-ltd.gcss.molecules.notification": "^0.0.3",
+    "@bit/guya-ltd.gcss.organisms.formcontrol": "^0.0.1",
     "@bit/guya-ltd.gcss.templates.httperror": "^0.0.1",
     "@bit/guya-ltd.gcss.templates.shophome": "^0.0.1",
     "@bit/guya-ltd.gcss.templates.shopview": "^0.0.1",
@@ -24,11 +26,13 @@
     "@testing-library/user-event": "^7.1.2",
     "react": "^16.13.1",
     "react-async": "^10.0.1",
+    "react-chat-window": "^1.2.1",
     "react-dom": "^16.13.1",
     "react-ionicons-icon": "^0.1.2",
     "react-router-dom": "^5.2.0",
     "react-router-i18n": "^1.0.1",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "rodal": "^1.8.1"
   },
   "devDependencies": {
     "commitizen": "^4.1.2",

@@ -8,12 +8,17 @@ import {
     ReactiveBase, 
     DynamicRangeSlider,
     RatingsFilter,
-    SelectedFilters
+    SelectedFilters,
+    ReactiveList,
+    ResultCard,
+    SingleList
 } from '@appbaseio/reactivesearch';
 
 const SearchPage = (props) => {
     /* Localization */
     const locale = props.match.params.locale == null ? 'en' : props.match.params.locale;
+
+    const { ResultCardsWrapper } = ReactiveList;
 
     return(
         <ReactiveBase
@@ -46,7 +51,10 @@ const SearchPage = (props) => {
                     <div className="col-xs-10">
                         <div className="row">
                             <div className="col-xs-12 col-md-2">
-                                Filter
+                                Filter by
+                                <div>
+                                <SingleList componentId="CitySensor" dataField="category" title="Category" />
+                                </div>
                                 <div>
                                     <DynamicRangeSlider
                                         componentId="DynamicRangeSensor"
@@ -68,7 +76,43 @@ const SearchPage = (props) => {
                             </div>
                             <div className="col-xs-0 col-md-1"/>
                             <div className="col-xs-10 col-md-8">
-                                Airpods
+                            <ReactiveList
+                                size={12}
+                                pagination
+                                react={{
+                                    "and": ["PriceFilter", "SearchFilter", "DynamicRangeSensor", "ratingsSensor"]
+                                }}
+                                componentId="SearchResult"
+                            >
+                                {({ data, error, loading}) => (
+                                    <ResultCardsWrapper>
+                                        {
+                                            data.map(item => (
+                                                <ResultCard key={item._id}>
+                                                    <ResultCard.Image src={item.day_of_week}/>
+                                                    <ResultCard.Title
+                                                        dangerouslySetInnerHTML={{
+                                                            __html: item.customer_last_name
+                                                        }}
+                                                    />
+                                                    <ResultCard.Description>
+                                                        <div>
+                                                            <div>by {item.customer_first_name}</div>
+                                                            <div>
+                                                                ({item.total_unique_products} avg)
+                                                            </div>
+                                                        </div>
+                                                        <span>
+                                                            Pub {item.order_date}
+                                                        </span>
+                                                    </ResultCard.Description>
+                                                </ResultCard>
+                                            ))
+                                        }
+                                    </ResultCardsWrapper>
+                                )}
+                            </ReactiveList>
+                            <br /><br /><br /><br /><br />
                             </div>
                         </div>
                     </div>
