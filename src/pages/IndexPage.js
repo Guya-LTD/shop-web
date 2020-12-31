@@ -264,7 +264,7 @@ const Index = (props) => {
                     <LoginModal />
                 </Rodal>
 
-                <Rodal visible={visibleRegisterModal} onClose={hideRegisterModal} height="400">
+                <Rodal visible={visibleRegisterModal} onClose={hideRegisterModal} height="570">
                     <RegisterModal />
                 </Rodal>
             </div>

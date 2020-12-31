@@ -7,16 +7,18 @@ import Formcontrol from '@bit/guya-ltd.gcss.organisms.formcontrol';
 import Field from '@bit/guya-ltd.gcss.molecules.field';
 import Button from '@bit/guya-ltd.gcss.atoms.button';
 import { useAsync } from 'react-async';
+import { Redirect } from 'react-router-dom';
 import {
     Mail,
     Key,
     Person
 } from 'react-ionicons-icon';
 import Logo from '@bit/guya-ltd.gcss.molecules.logo';
+import Blockquote from '@bit/guya-ltd.gcss.molecules.blockquote';
 
 const { REACT_APP_API_GATEWAY } = process.env;
 
-const REGISTER_URL = REACT_APP_API_GATEWAY + '/api/v1/sessions';
+const REGISTER_URL = '/api/v1/users';
 
 const RegisterModal = (props) => {
     const [fullname, setFullname] = useState("");
@@ -25,33 +27,52 @@ const RegisterModal = (props) => {
 
     const [password, setPassword] = useState("");
 
+    const [registerError, setRegisterError] = useState(false);
+
+    const [registerEmpty, setRegisterEmpty] = useState(false);
+
+    const [registerRedirect, setRegisterRedirect] = useState(false);
+
     /* Rest API Authenticator function */
-    const auth = ([email, password], { signal }) => 
+    const auth = ([fullname, identity, password], { signal }) => 
         fetch(REGISTER_URL, {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                'identity': email,
-                'password': password
+                'name': fullname,
+                'identity': identity,
+                'password': password,
+                'email': '',
+                'pnum': '',
+                'uti': 'CU_2210'
             })
         }, signal)
         .then(response => {
-            
+            if(response.status == 201){
+                // Resturn stream response data
+                setRegisterRedirect(true);
+                return response.json()
+            } else {
+                setRegisterError(true)
+            }
+
+            setPassword("");
+            //console.log(response);
             return response.json();
         })
         .then(data => {
-
+            console.log(data);
         } );
 
     const handleRegister = event => {
         event.preventDefault();
         // Reste Errors
-        //setLoginEmpty(false);
+        setRegisterEmpty(false);
 
-        /*if(email == "" || password == "")
-            setLoginEmpty(true);
+        if(fullname == "" || identity == "" || password == "")
+            setRegisterEmpty(true);
         else
-            run(email, password);*/
+            run(fullname, identity, password);
     }
 
     /* Async api call */
@@ -59,6 +80,7 @@ const RegisterModal = (props) => {
 
     return (
         <div className="row">
+            {registerRedirect && <Redirect to={`/home`} />}
             <div className="row">
                 <div className="col-md-10"/>
                 <div className="col-md-2">
@@ -68,6 +90,24 @@ const RegisterModal = (props) => {
             </div>
             <div className="row">
                 <div className="col-xs-12" style={{marginLeft: "38px"}}>
+                    <div>
+                        {registerError && <Blockquote
+                                    type='notification'
+                                    theme='royal-blue'
+                                    variant='danger'
+                                    header={ <I18n t="login_failed" /> }
+                                    body={ <I18n t="login_failed_description" /> }
+                                />
+                        }
+                        {registerEmpty && <Blockquote
+                                        type='notification'
+                                        theme='royal-blue'
+                                        variant='danger'
+                                        header={ <I18n t="login_field_empty" /> }
+                                        body={ <I18n t="login_field_empty_description" /> }
+                                    />
+                        }
+                    </div>
                     <div>
                         <Formcontrol onSubmit={handleRegister}>
                             <Field
