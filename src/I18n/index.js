@@ -31,10 +31,11 @@ const translations = {
         'email_or_phone_number': 'Email or phone number',
         'full_name': 'Full Name',
         'password': 'Password',
-        login_failed: 'Unable to Sign In',
-        login_failed_description: 'Unable to log in with provided credentials.',
-        login_field_empty: 'Empty fields',
-        login_field_empty_description: 'Below fields cannot be empty',
+        'login_failed': 'Unable to Sign In',
+        'login_failed_description': 'Unable to log in with provided credentials.',
+        'login_field_empty': 'Empty fields',
+        'login_field_empty_description': 'Below fields cannot be empty',
+        'item': 'Item'
     },
     am: {
         http: httpAm,
@@ -59,10 +60,11 @@ const translations = {
         'email_or_phone_number': 'Email or phone number',
         'full_name': 'Full Name',
         'password': 'Password',
-        login_failed: 'Unable to Sign In',
-        login_failed_description: 'Unable to log in with provided credentials.',
-        login_field_empty: 'Empty fields',
-        login_field_empty_description: 'Below fields cannot be empty',
+        'login_failed': 'Unable to Sign In',
+        'login_failed_description': 'Unable to log in with provided credentials.',
+        'login_field_empty': 'Empty fields',
+        'login_field_empty_description': 'Below fields cannot be empty',
+        'item': 'Item'
     }
 }
     

@@ -23,6 +23,7 @@ import LoginModal from 'pages/LoginModal';
 import RegisterModal from 'pages/RegisterModal';
 import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
+import Typography from '@bit/guya-ltd.gcss.atoms.typography';
 import { 
     ReactiveBase, 
     DynamicRangeSlider,
@@ -301,25 +302,25 @@ const Index = (props) => {
                                     <ResultCardsWrapper>
                                         {
                                             data.map(item => (
-                                                <ResultCard key={item._id}>
-                                                    <ResultCard.Image src={item.assets.images.src}/>
-                                                    <ResultCard.Title
-                                                        dangerouslySetInnerHTML={{
-                                                            __html: item.names.en
-                                                        }}
-                                                    />
-                                                    <ResultCard.Description>
-                                                        <div>
-                                                            <div>by {item.customer_first_name}</div>
+                                                <a href={'/shop/item/' + item._id}>
+                                                    <ResultCard key={item._id}>
+                                                        <ResultCard.Image src={item.assets.images.src}/>
+                                                        <ResultCard.Title
+                                                            dangerouslySetInnerHTML={{
+                                                                __html: item.names.en
+                                                            }}
+                                                        />
+                                                        <ResultCard.Description>
                                                             <div>
-                                                                ({item.total_unique_products} avg)
+                                                                <div style={{color: "#9b9b9b"}}> {item.category_name}</div>
                                                             </div>
-                                                        </div>
-                                                        <span>
-                                                            Pub {item.order_date}
-                                                        </span>
-                                                    </ResultCard.Description>
-                                                </ResultCard>
+                                                            <span>
+                                                                <br />
+                                                                {item.pricing.price}Birr
+                                                            </span>
+                                                        </ResultCard.Description>
+                                                    </ResultCard>
+                                                </a>
                                             ))
                                         }
                                     </ResultCardsWrapper>

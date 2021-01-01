@@ -20,7 +20,6 @@ import 'rodal/lib/rodal.css';
 import { Redirect, NavLink as RouterNavLink } from 'react-router-dom';
 import { NavLink } from 'react-router-i18n';
 import I18n from 'I18n';
-import { CategorySearch } from '@appbaseio/reactivesearch';
 
 const HomeLayout = (props) => {
     const { children, locale, route_location } = props;
@@ -70,12 +69,11 @@ const HomeLayout = (props) => {
 
     const headerCollapse = {
         search: null,
-        left: <CategorySearch
-            componentId="SearchFilter"
-            dataField="customer_full_name"
-            categoryField="email"
-            placeholder="Search for cars"
-        />,
+        left: <Search
+                theme='cornflower-blue'
+                variant="nav"
+                icon={<SearchIcon size="20px" />}
+                />,
         right: <span>
                     <Link theme="cornflower-blue" cls="link--nav-cornflower" onClick={showRegisterModal}><I18n t="sign_up" /></Link>
                     <Link theme="cornflower-blue" cls="link--nav-cornflower" onClick={showLoginModal}><I18n t="login" /></Link>
