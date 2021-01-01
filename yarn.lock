@@ -1301,10 +1301,10 @@
     prop-types "15.7.2"
     react "^16.13.1"
 
-"@bit/guya-ltd.gcss.templates.shophome@^0.0.1":
-  version "0.0.1"
-  resolved "https://node.bit.dev/guya-ltd.gcss.templates.shophome/-/guya-ltd.gcss.templates.shophome-0.0.1.tgz#2298fb87f8bdd45b3a41798d60d885a49682b1d8"
-  integrity sha1-Ipj7h/i91Fs6QXmNYNiFpJaCsdg=
+"@bit/guya-ltd.gcss.templates.shophome@^0.0.2":
+  version "0.0.2"
+  resolved "https://node.bit.dev/guya-ltd.gcss.templates.shophome/-/guya-ltd.gcss.templates.shophome-0.0.2.tgz#169801fd98afa7cebd2b10f2009d3ce50c645077"
+  integrity sha1-FpgB/Zivp869KxDyAJ085QxkUHc=
   dependencies:
     "@bem-react/classname" "^1.5.8"
     prop-types "15.7.2"

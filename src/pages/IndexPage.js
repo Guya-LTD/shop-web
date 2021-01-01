@@ -23,10 +23,21 @@ import LoginModal from 'pages/LoginModal';
 import RegisterModal from 'pages/RegisterModal';
 import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
+import { 
+    ReactiveBase, 
+    DynamicRangeSlider,
+    RatingsFilter,
+    SelectedFilters,
+    ReactiveList,
+    ResultCard,
+    SingleList
+} from '@appbaseio/reactivesearch';
 
 const Index = (props) => {
     /* Localization */
     const locale = props.match.params.locale == null ? 'en' : props.match.params.locale;
+
+    const { ResultCardsWrapper } = ReactiveList;
 
     const [visibleLoginModal, setVisibleLoginModal] = useState(false);
 
@@ -275,6 +286,49 @@ const Index = (props) => {
                 hero={hero}
                 services={services}
             >
+            <div className="row">
+                <div className="col-xs-0 col-md-1"/>
+                    <div className="col-xs-10 col-md-10">
+                    <ReactiveBase
+                        app="db_u7sqbaa.product"
+                        url="http://127.0.0.1:50000/"
+                        >
+                        <ReactiveList
+                                size={12}
+                                componentId="SearchResult"
+                            >
+                                {({ data, error, loading}) => (
+                                    <ResultCardsWrapper>
+                                        {
+                                            data.map(item => (
+                                                <ResultCard key={item._id}>
+                                                    <ResultCard.Image src={item.assets.images.src}/>
+                                                    <ResultCard.Title
+                                                        dangerouslySetInnerHTML={{
+                                                            __html: item.names.en
+                                                        }}
+                                                    />
+                                                    <ResultCard.Description>
+                                                        <div>
+                                                            <div>by {item.customer_first_name}</div>
+                                                            <div>
+                                                                ({item.total_unique_products} avg)
+                                                            </div>
+                                                        </div>
+                                                        <span>
+                                                            Pub {item.order_date}
+                                                        </span>
+                                                    </ResultCard.Description>
+                                                </ResultCard>
+                                            ))
+                                        }
+                                    </ResultCardsWrapper>
+                                )}
+                            </ReactiveList>
+                        <br /><br /><br /><br /><br />
+                    </ReactiveBase>
+                </div>
+            </div>
             </Shophome>
         </>
     )
