@@ -13,7 +13,8 @@ import {
     Search as SearchIcon,
     MenuOutline,
     CloseOutline,
-    Language
+    Language,
+    PersonCircleOutline
 } from 'react-ionicons-icon';
 import { Redirect, NavLink as RouterNavLink } from 'react-router-dom';
 import { NavLink } from 'react-router-i18n';
@@ -33,10 +34,13 @@ import {
     ResultCard,
     SingleList
 } from '@appbaseio/reactivesearch';
+import Cookies from 'universal-cookie';
 
 const Index = (props) => {
     /* Localization */
     const locale = props.match.params.locale == null ? 'en' : props.match.params.locale;
+
+    const cookies = new Cookies();
 
     const { ResultCardsWrapper } = ReactiveList;
 
@@ -83,6 +87,7 @@ const Index = (props) => {
                 />
     }
 
+
     const headerCollapse = {
         search: null,
         left: <Search
@@ -91,8 +96,15 @@ const Index = (props) => {
                 icon={<SearchIcon size="20px" />}
               />,
         right: <span>
-                    <Link theme="cornflower-blue" cls="link--nav-cornflower" onClick={showRegisterModal}><I18n t="sign_up" /></Link>
-                    <Link theme="cornflower-blue" cls="link--nav-cornflower" onClick={showLoginModal}><I18n t="login" /></Link>
+                    {
+                        cookies.get('token') != null ? 
+                            <Link theme="cornflower-blue" cls="link--nav-cornflower" href={'/' + locale + '/shop/home/orders'}><PersonCircleOutline size="30px" /></Link>
+                        :
+                        <>
+                            <Link theme="cornflower-blue" cls="link--nav-cornflower" onClick={showRegisterModal}><I18n t="sign_up" /></Link>
+                            <Link theme="cornflower-blue" cls="link--nav-cornflower" onClick={showLoginModal}><I18n t="login" /></Link>
+                        </>
+                    }
                     <div className="divider-vr" />
                     <a className='link link--xs link--light-gh theme-red' style={{marginLeft: "0px",  verticalAlign: "sub"}}>
                         <Dropdown
@@ -109,7 +121,7 @@ const Index = (props) => {
                             </NavLink>
                         </Dropdown>
                     </a>
-                    <a href="#" className="link nav-cornflower" style={{ marginLeft: "2px", verticalAlign: "bottom"}}>
+                    <a href={'/shop/' + locale + '/cart'} className="link nav-cornflower" style={{ marginLeft: "2px", verticalAlign: "bottom"}}>
                         <span>
                             <svg height="27px" xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><circle cx='176' cy='416' r='16' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='32'/><circle cx='400' cy='416' r='16' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='32'/><path fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='32' d='M48 80h64l48 272h256'/><path d='M160 288h249.44a8 8 0 007.85-6.43l28.8-144a8 8 0 00-7.85-9.57H128' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='32'/></svg>
                         </span>
@@ -272,7 +284,7 @@ const Index = (props) => {
     return (
         <>
             <div>
-                <Rodal visible={visibleLoginModal} onClose={hideLoginModal} height="270">
+                <Rodal visible={visibleLoginModal} onClose={hideLoginModal} height="360">
                     <LoginModal />
                 </Rodal>
 

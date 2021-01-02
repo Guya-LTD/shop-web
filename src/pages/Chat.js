@@ -48,7 +48,7 @@ const DemoChat = (props) => {
 
     socket.on('support:connection:count', message => {
       setSupportCount(message);
-      alert(message);
+      //alert(message);
     })
 
     socket.on('customer:connection:created', message => {

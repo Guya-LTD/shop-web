@@ -80,7 +80,6 @@ const RegisterModal = (props) => {
 
     return (
         <div className="row">
-            {registerRedirect && <Redirect to={`/home`} />}
             <div className="row">
                 <div className="col-md-10"/>
                 <div className="col-md-2">
@@ -107,6 +106,7 @@ const RegisterModal = (props) => {
                                         body={ <I18n t="login_field_empty_description" /> }
                                     />
                         }
+                        {registerRedirect && 'Successfully registered, login to proceed'}
                     </div>
                     <div>
                         <Formcontrol onSubmit={handleRegister}>

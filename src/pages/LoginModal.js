@@ -9,20 +9,24 @@ import Button from '@bit/guya-ltd.gcss.atoms.button';
 import { useAsync } from 'react-async';
 import {
     Mail,
-    Key
+    Key,
+    Person
 } from 'react-ionicons-icon';
 import Logo from '@bit/guya-ltd.gcss.molecules.logo';
+import Cookies from 'universal-cookie';
+import Blockquote from '@bit/guya-ltd.gcss.molecules.blockquote';
+import { Redirect } from 'react-router-dom';
 
-const { REACT_APP_API_GATEWAY } = process.env;
-
-const LOGIN_URL = REACT_APP_API_GATEWAY + '/api/v1/sessions';
+const LOGIN_URL = '/api/v1/sessions';
 
 const LoginModal = (props) => {
-    /* State hooks */
-    const [email, setEmail] = useState("");
+    const locale = 'en';
 
-    /* State hooks */
-    const [password, setPassword] = useState("");
+    const cookies = new Cookies();
+
+    const EXPIRE_DATE = 30; // 30 Days
+
+    const expires = new Date(Date.now() + EXPIRE_DATE * 24 * 60 * 60 * 1000)
 
     /* Rest API Authenticator function */
     const auth = ([email, password], { signal }) => 
@@ -35,26 +39,63 @@ const LoginModal = (props) => {
             })
         }, signal)
         .then(response => {
-            
+            if(response.status == 201)
+                // Resturn stream response data
+                return response.json()
+            else
+                setLoginError(true)
+
+            // Alway return decoded data
+            setPassword("");
             return response.json();
         })
         .then(data => {
-
+            console.log(data);
+            // Save the token and redirect
+            if(error == undefined && data.status_code == 201){
+                if(data.data.token != null) {
+                    console.log("Enteredd");
+                    cookies.set('loged_in', true, { path: '/shop', expires:  expires });
+                    cookies.set('email', email, { path: '/shop', expires:  expires });
+                    cookies.set('name', email.split('@')[0], { path: '/shop', expires:  expires });
+                    cookies.set('token', data.data.token, { path: '/shop', expires:  expires });
+                    setLoginRedirect(true)
+                } else {
+                    setLoginError(true);
+                }
+            }else {
+                setLoginError(true);
+            }
         } );
+
+    /* Async api call */
+    const { isPending, error, run } = useAsync({ deferFn: auth })
+
+    /* State hooks */
+    const [email, setEmail] = useState("");
+
+    /* State hooks */
+    const [password, setPassword] = useState("");
+
+    /* Login Erro */
+    const [loginError, setLoginError] = useState(false);
+
+    /* Login Redirect */
+    const [loginRedirect, setLoginRedirect] = useState(false);
+    
+    /* Empty fields */
+    const [loginEmpty, setLoginEmpty] = useState(false);
 
     const handleLogin = event => {
         event.preventDefault();
         // Reste Errors
-        //setLoginEmpty(false);
+        setLoginEmpty(false);
 
-        /*if(email == "" || password == "")
+        if(email == "" || password == "")
             setLoginEmpty(true);
         else
-            run(email, password);*/
+            run(email, password);
     }
-
-    /* Async api call */
-    const { isPending, error, run } = useAsync({ deferFn: auth })
 
     return(
         <div className="row">
@@ -68,15 +109,36 @@ const LoginModal = (props) => {
             <div className="row">
                 <div className="col-xs-12" style={{marginLeft: "38px"}}>
                     <div>
+                    {error && console.log(error)}
+                    {error &&  <Redirect push to={`/${locale}/error?status_code=500&stack_trace=L1&message=${error.message}`} />}
+                    {loginError && <Blockquote
+                                    type='notification'
+                                    theme='royal-blue'
+                                    variant='danger'
+                                    header={ <I18n t="login_failed" /> }
+                                    body={ <I18n t="login_failed_description" /> }
+                                />
+                    }
+                    {loginEmpty && <Blockquote
+                                    type='notification'
+                                    theme='royal-blue'
+                                    variant='danger'
+                                    header={ <I18n t="login_field_empty" /> }
+                                    body={ <I18n t="login_field_empty_description" /> }
+                                />
+                    }
+                    {loginRedirect && <Redirect to='/home/orders' />}
+                    </div>
+                    <div>
                         <Formcontrol onSubmit={handleLogin}>
                             <Field
                                 type='text'
-                                label={ <I18n t="credential.email" /> }
-                                placeholder='Email'
-                                theme='red'
+                                label={ <I18n t="email_or_phone_number" /> }
+                                placeholder='Email or phone number'
+                                theme='cornflower-blue'
                                 addon={ 
                                     {
-                                        left: <div className="icon icon--sm"><Mail size="20px" /></div>,
+                                        left: <div className="icon icon--sm"><Person size="20px" /></div>,
                                     } 
                                 }
                                 value={email} 
@@ -84,9 +146,9 @@ const LoginModal = (props) => {
                             />
                             <Field
                                 type='password'
-                                label={ <I18n t="credential.password" /> }
+                                label={ <I18n t="password" /> }
                                 placeholder='Password'
-                                theme='royal-blue'
+                                theme='cornflower-blue'
                                 addon={ 
                                     {
                                         left: <div className="icon icon--sm"><Key size="20px" /></div>
