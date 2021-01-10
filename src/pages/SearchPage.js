@@ -22,7 +22,7 @@ const SearchPage = (props) => {
 
     return(
         <ReactiveBase
-            app="kibana_sample_data_ecommerce"
+            app="db_u7sqbaa.product"
             url="http://127.0.0.1:50000/"
             >
             <HomeLayout locale={locale} route_location='search'>
@@ -53,18 +53,18 @@ const SearchPage = (props) => {
                             <div className="col-xs-12 col-md-2">
                                 Filter by
                                 <div>
-                                <SingleList componentId="CitySensor" dataField="category" title="Category" />
+                                <SingleList componentId="CitySensor" dataField="category_name" title="Category" />
                                 </div>
                                 <div>
                                     <DynamicRangeSlider
                                         componentId="DynamicRangeSensor"
-                                        dataField="products.price"
+                                        dataField="pricing.price"
                                         />
                                 </div>
                                 <div>
                                 <RatingsFilter
                                     componentId="ratingsSensor"
-                                    dataField="total_unique_products"
+                                    dataField="rate_average"
                                     data={[
                                         { start: 4, end: 5, label: <I18n t="four_stars_and_up" /> },
                                         { start: 3, end: 5, label: <I18n t="three_stars_and_up" /> },
@@ -88,25 +88,25 @@ const SearchPage = (props) => {
                                     <ResultCardsWrapper>
                                         {
                                             data.map(item => (
-                                                <ResultCard key={item._id}>
-                                                    <ResultCard.Image src={item.day_of_week}/>
-                                                    <ResultCard.Title
-                                                        dangerouslySetInnerHTML={{
-                                                            __html: item.customer_last_name
-                                                        }}
-                                                    />
-                                                    <ResultCard.Description>
-                                                        <div>
-                                                            <div>by {item.customer_first_name}</div>
+                                                <a href={'/shop/item/' + item._id}>
+                                                    <ResultCard key={item._id}>
+                                                        <ResultCard.Image src={'http://127.0.0.1:50000/shop' + item.assets.images[0].src}/>
+                                                        <ResultCard.Title
+                                                            dangerouslySetInnerHTML={{
+                                                                __html: item.names.en
+                                                            }}
+                                                        />
+                                                        <ResultCard.Description>
                                                             <div>
-                                                                ({item.total_unique_products} avg)
+                                                                <div style={{color: "#9b9b9b"}}> {item.category_name}</div>
                                                             </div>
-                                                        </div>
-                                                        <span>
-                                                            Pub {item.order_date}
-                                                        </span>
-                                                    </ResultCard.Description>
-                                                </ResultCard>
+                                                            <span>
+                                                                <br />
+                                                                {item.pricing.price}Birr
+                                                            </span>
+                                                        </ResultCard.Description>
+                                                    </ResultCard>
+                                                </a>
                                             ))
                                         }
                                     </ResultCardsWrapper>

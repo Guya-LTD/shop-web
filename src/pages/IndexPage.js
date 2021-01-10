@@ -316,7 +316,7 @@ const Index = (props) => {
                                             data.map(item => (
                                                 <a href={'/shop/item/' + item._id}>
                                                     <ResultCard key={item._id}>
-                                                        <ResultCard.Image src={item.assets.images.src}/>
+                                                        <ResultCard.Image src={'http://127.0.0.1:50000/shop' + item.assets.images[0].src}/>
                                                         <ResultCard.Title
                                                             dangerouslySetInnerHTML={{
                                                                 __html: item.names.en

@@ -76,8 +76,8 @@ const HomeLayout = (props) => {
         search: null,
         left: <CategorySearch
             componentId="SearchFilter"
-            dataField="customer_full_name"
-            categoryField="email"
+            dataField="names.en"
+            categoryField="category_name"
             placeholder="Search for cars"
         />,
         right: <span>
